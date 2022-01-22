@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bienvenido</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body style="background-color: <%= locals.bgColor ? bgColor : null %> ">
+
+    <% if (locals.name) {%> 
+      <div>
+        <h1>
+          Hola <%= name %> , elegiste el color: <%= color %> , tu email es: <%= email %> y tu edad es: <%= edad %>  
+        </h1>
+        <h3><a href="/user">Segunda Pagina</a></h3>
+      </div>
+      <% } else { %> 
+
+    <h1>FORM WELCOME</h1>
+    <form action="/" method="POST">
+
+      <div>
+      <label for="name"> Ingrese su nombre </label><br>
+      <input type="text" name="name" id="name"> 
+      <small><%= locals.errors && errors.name ? errors.name.msg : null %> </small> 
+    </div>
+
+   <div>
+      <select name="color" id="color">
+        <option hidden selected value="">Selecciona un color</option><br>
+        <option value="red">Rojo</option>
+        <option value="green">Verde</option>
+        <option value="blue">Azul</option>
+      </select> 
+      <small><%= locals.errors && errors.color ? errors.color.msg : null %> </small> 
+    </div>
+
+
+      <div>
+      <label for="email"> Ingrese su email </label><br>
+      <input type="text" name="email" id="email"> 
+      <small><%= locals.errors && errors.email ? errors.email.msg : null %> </small>
+    </div>
+
+      <div>
+      <label for="edad"> Ingrese su edad </label><br>
+      <input type="text" name="edad" id="edad"> 
+      <small><%= locals.errors && errors.edad ? errors.edad.msg : null %> </small> 
+    </div>
+
+
+      <div>
+      
+      <input type="checkbox" name="recordar" id="recordar"> 
+      <label for="recordar"> Recordar color </label>
+    </div>
+      <input type="submit" value="Enviar datos">
+      <a href="/destroy">Olvidar color</a>
+    </form>
+    <% } %> 
+  </body>
+</html>
